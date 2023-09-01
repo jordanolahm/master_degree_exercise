@@ -1,0 +1,1 @@
+Exercise of frendly class about the communication between classes
