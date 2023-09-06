@@ -1,10 +1,11 @@
-#include "Disciplina.hpp"
+
 #include <iostream>
+#include "Disciplina.hpp"
 #include "SalaAula.hpp"
 
 
 Disciplina::Disciplina(std::string nome)
-	:nome{nome} {
+	:nome{nome}, SalaAula{nullptr} {
 }
 
 std::string Disciplina::getNome(){
@@ -50,3 +51,12 @@ void Disciplina::setSalaAula(SalaAula* sala) {
 SalaAula* Disciplina::getSalaAula() {
     return this->SalaAula;
 }
+
+void Disciplina::adicionarEmSala(SalaAula& sala) {
+    salaAula = &sala;
+}
+
+void Disciplina::modificarSalaDeAula(const std::string& novaSala) {
+    salaAula->nomeSala = novaSala;
+}
+

@@ -6,7 +6,11 @@
 
 #include "Disciplina.hpp"
 
+// class Disciplina; // Foward Declaration
+
 class SalaAula{
+	friend class Disciplina; // SalaAula é amiga da classe Disciplina
+
 	public:
 		SalaAula(std::string nome, unsigned int capacidade);
 		
@@ -16,8 +20,10 @@ class SalaAula{
 		unsigned int getCapacidade();
 		void setCapcidade(unsigned int capacidade);
 
-		void adicionarDisciplina( Disciplina* Disciplina);
-		void removerDisciplina( Disciplina* Disciplina);
+        void adicionarDisciplina(Disciplina& disciplina);
+        void removerDisciplina(Disciplina* Disciplina);
+
+        void modificarSalaDeAula(Disciplina &disciplina, std::string &novaSala);
 
 		std::list<Disciplina*> getDisciplinas();
 
