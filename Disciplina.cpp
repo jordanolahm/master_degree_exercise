@@ -41,7 +41,7 @@ void Disciplina::imprimirDados(std::string& cabecalho, unsigned int cargaTotalCu
     std::cout << "Porcentagem do curso: " << pctCurso << "%" << std::endl;
     std::cout << "Professor: " << this->professor->getNome() << std::endl;
 }
-
+//modificacao sem classe amiga
 void Disciplina::setSalaAula(SalaAula* sala) {
     if(salaAula) {
         salaAula->removerDisciplina(this); //remove disciplina anterior
@@ -59,6 +59,7 @@ void Disciplina::adicionarEmSala(SalaAula& sala) {
     salaAula = &sala;
 }
 
+//modificacao sem classe amiga
 void Disciplina::modificarSalaDeAula(const std::string& novaSala) {
     if(salaAula && salaAula->getNome() != novaSala)
         salaAula->removerDisciplina(this); //remove disciplina da sala atual
