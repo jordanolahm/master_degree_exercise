@@ -41,6 +41,7 @@ void Disciplina::imprimirDados(std::string& cabecalho, unsigned int cargaTotalCu
     std::cout << "Porcentagem do curso: " << pctCurso << "%" << std::endl;
     std::cout << "Professor: " << this->professor->getNome() << std::endl;
 }
+
 //modificacao sem classe amiga
 void Disciplina::setSalaAula(SalaAula* sala) {
     if(salaAula) {

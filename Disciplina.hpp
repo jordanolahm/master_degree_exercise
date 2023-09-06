@@ -2,9 +2,11 @@
 #define DISCIPLINA_H
 
 #include <string>
+#include <list>
 
 #include "Pessoa.hpp"
 #include "SalaAula.hpp"
+#include "ConteudoMinistrado.hpp"
 
 // class SalaAula; //Forward declaration
 
@@ -35,11 +37,15 @@ class Disciplina{
 		// modificar a sala de aula da disciplina
 		void modificarSalaDeAula(std::string& novaSala);
 
+
+
 	private:
 		std::string nome;
 		unsigned short int cargaHoraria;
 		Pessoa* professor;
 		SalaAula* salaAula; 
 		SalaAula* salaAnterior; //atributo membro referencia sala anterior
+		std::list<ConteudoMinistrado*> listaConteudo;
+
 };
 #endif
