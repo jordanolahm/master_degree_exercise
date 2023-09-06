@@ -5,7 +5,7 @@
 
 
 Disciplina::Disciplina(std::string nome)
-	:nome{nome}, SalaAula{nullptr} {
+	:nome{nome}, salaAula{nullptr}, salaAnterior{nullptr} {
 }
 
 std::string Disciplina::getNome(){
@@ -43,8 +43,11 @@ void Disciplina::imprimirDados(std::string& cabecalho, unsigned int cargaTotalCu
 }
 
 void Disciplina::setSalaAula(SalaAula* sala) {
-
-    this->sala = sala; 
+    if(salaAula) {
+        salaAula->removerDisciplina(this); //remove disciplina anterior
+    }
+    salaAula = &sala; 
+    salaAula ->adicionarDisciplina(this); // adiciona nova disciplina
 }
 
 
@@ -57,6 +60,12 @@ void Disciplina::adicionarEmSala(SalaAula& sala) {
 }
 
 void Disciplina::modificarSalaDeAula(const std::string& novaSala) {
-    salaAula->nomeSala = novaSala;
+    if(salaAula && salaAula->getNome() != novaSala)
+        salaAula->removerDisciplina(this); //remove disciplina da sala atual
+    
+    salaAula = salaAnterior; //atualiza sala anterior como sala atual
+
+    if(salaAula) 
+        salaAula->adicionarDisciplina(this); //adiciona disciplina na sala anterior
 }
 

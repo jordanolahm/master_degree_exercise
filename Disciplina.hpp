@@ -39,6 +39,7 @@ class Disciplina{
 		std::string nome;
 		unsigned short int cargaHoraria;
 		Pessoa* professor;
-		SalaAula* sala; 
+		SalaAula* salaAula; 
+		SalaAula* salaAnterior; //atributo membro referencia sala anterior
 };
 #endif
