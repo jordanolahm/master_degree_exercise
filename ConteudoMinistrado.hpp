@@ -1,17 +1,24 @@
 #ifndef CONTEUDO_MINISTRADO_HPP
 #define CONTEUDO_MINISTRADO_HPP
-#include <list>
+
 #include<string>
 
+namespace ufpr{
 class ConteudoMinistrado{
-	public:
-		ConteudoMinistrado(std::string descricao, unsigned short cargaHorariaConteudo);
-		std::string& getDescricao();
-		unsigned short getCargaHorariaConteudo();
-		unsigned int getId();
-	private:
-		std::string descricao;
-		unsigned short cargaHorariaConteudo;
-		unsigned int id;
+    public:
+        virtual ~ConteudoMinistrado() = default;
+
+        ConteudoMinistrado(const std::string& descricao, const unsigned short cargaHorariaConteudo);
+
+        const std::string& getDescricao() const;
+        unsigned short getCargaHorariaConteudo() const;
+        unsigned int getId() const;
+    private:
+        static unsigned int proxId;
+
+        std::string descricao;
+        unsigned short cargaHorariaConteudo;
+        unsigned int id;
 };
+}
 #endif

@@ -1,30 +1,26 @@
 #include <iostream>
-#include <string>
-#include <list>
+#include <memory>
 
-#include "Pessoa.hpp"
-#include "Disciplina.hpp"
-#include "SalaAula.hpp"
-
+#include "Livro.hpp"
+#include "Ementa.hpp"
 
 int main() {
-	//construindo salas
-	SalaAula sala101("Sala 101", 50);
-    SalaAula sala102("Sala 102", 40);
+    ufpr::Ementa* ementa1{new ufpr::Ementa{"Paradigmas de programação"}};
+    ufpr::Ementa* ementa2{new ufpr::Ementa{"Orientação a Objetos"}};
+    ufpr::Ementa* ementa3{new ufpr::Ementa{"Prog. Em Java"}};
 
-	//construindo disciplinas
-    Disciplina disc1("Programação", 60, "Prof. Smith");
-    Disciplina disc2("Cálculo", 90, "Prof. Johnson");
+    ementa1->addLivro(ufpr::Livro::carregarLivro(1234));
+    ementa1->addLivro(ufpr::Livro::carregarLivro(5678));
 
-    disc1.adicionarEmSala(sala101);
-    disc2.adicionarEmSala(sala102);
+    ementa2->addLivro(ufpr::Livro::carregarLivro(1234));
+    
+    delete ementa1;
+    std::cout << "Ementa 1 deletada, deletando ementa 2\n";
+    delete ementa2;
 
-    std::cout << "Disciplina: " << disc1.getNome() << " - Sala: " << disc1.salaAula->getNome() << std::endl;
-    std::cout << "Disciplina: " << disc2.getNome() << " - Sala: " << disc2.salaAula->getNome() << std::endl;
+    ementa3->addLivro(ufpr::Livro::carregarLivro(5678));
 
-    sala101.modificarSalaDeAula(disc1, "Sala 103");
+    delete ementa3;
 
-    std::cout << "Nova sala de aula para Programação: " << disc1.salaAula->getNome() << std::endl;
-
-	return 0;
+    return 0;
 }

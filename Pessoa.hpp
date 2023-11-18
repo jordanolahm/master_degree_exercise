@@ -4,26 +4,31 @@
 #include <cstdint>
 #include <string>
 
+#include "CPF.hpp"
+
+namespace ufpr {
 class Pessoa {
    public:
     Pessoa();
-    Pessoa(std::string nomePessoa);
-    Pessoa(std::string nomePessoa, uint64_t cpfPessoa, unsigned short idade);
+    Pessoa(const std::string& nomePessoa);
+    Pessoa(const std::string& nomePessoa, const CPF& cpf);
+    Pessoa(const std::string& nomePessoa, const CPF& cpf, unsigned short idade);
 
-    uint64_t getCpf();
-    void setCpf(uint64_t novoCpf);
+    virtual ~Pessoa() = default;
 
-    std::string getNome();
-    void setNome(std::string novoNome);
+    const CPF& getCpf() const;
+    void setCpf(const CPF& novoCpf);
 
-    unsigned short int getIdade();
-    void setIdade(unsigned short novaIdade);
+    std::string getNome() const;
+    void setNome(const std::string& novoNome);
+
+    unsigned short int getIdade() const;
+    void setIdade(const unsigned short novaIdade);
 
    private:
-    bool validarCPF(uint64_t cpfTeste);
-
     std::string nome;
-    uint64_t cpf;
+    CPF cpf;
     uint8_t idade;
 };
+}  // namespace ufpr
 #endif

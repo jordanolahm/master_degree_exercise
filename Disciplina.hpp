@@ -1,51 +1,65 @@
 #ifndef DISCIPLINA_H
 #define DISCIPLINA_H
 
-#include <string>
 #include <list>
+#include <string>
 
-#include "Pessoa.hpp"
-#include "SalaAula.hpp"
 #include "ConteudoMinistrado.hpp"
+#include "Pessoa.hpp"
+#include "Professor.hpp"
+#include "EnumTipoDisciplina.hpp"
+#include "Ementa.hpp"
 
-// class SalaAula; //Forward declaration
+namespace ufpr{
+class SalaAula;  // Forward Declaration
+class Disciplina {
+   public:
+    Disciplina(const std::string &nome);
+    Disciplina(const std::string &nome, SalaAula *const sala);
+    Disciplina(const std::string &nome, SalaAula *const sala, const EnumTipoDisciplina tipo);
+    Disciplina(const std::string &nome, SalaAula *const sala, const EnumTipoDisciplina tipo, const Ementa& ementa);
 
-class Disciplina{
-	friend class SalaAula;
+    virtual ~Disciplina();
 
-	public:
-		Disciplina(std::string nome);
+    const std::string &getNome() const;
+    void setNome(const std::string &nome);
 
-		std::string getNome();
-		void setNome(std::string nome);
-		
-		int getCargaHoraria();
-		void setCargaHoraria(unsigned int carga);
+    int getCargaHoraria() const;
+    void setCargaHoraria(const unsigned int carga);
 
-		Pessoa* getProfessor();
-        void setProfessor(Pessoa* prof);
+    const Professor *getProfessor() const;
+    void setProfessor(Professor *const prof);
 
-		void imprimirDados(std::string& cabecalho, unsigned int cargaTotalCurso);
+    void setSalaAula(SalaAula *const sala);
+    const SalaAula *getSalaAula() const;
+    void anularSalaAula();
 
-		//set e get aula
-		void setSalaAula(SalaAula* sala);
-		SalaAula* getSalaAula(); 
+    void imprimirDados(const std::string &cabecalho,
+                       const unsigned int cargaTotalCurso) const;
 
-		// adicionar uma disciplina em sala de aula
-   		void adicionarEmSala(SalaAula& sala);
+    void adicionarConteudoMinistrado(const std::string &conteudo,
+                                     const unsigned short cargaHorariaConteudo);
+    void imprimirConteudosMinistrados() const;
+    const std::list<ConteudoMinistrado *> &getConteudos() const;
 
-		// modificar a sala de aula da disciplina
-		void modificarSalaDeAula(std::string& novaSala);
+    void adicionarAluno(Pessoa *const aluno);
+    void removerAluno(Pessoa *const aluno);
+    void removerAluno(const unsigned long cpf);
+    const std::list<Pessoa *> &getAlunos() const;
 
+    void setEmenta(const Ementa& ementa);
+    const Ementa& getEmenta() const;
 
+   private:
+    std::string nome;
+    unsigned short int cargaHoraria;
+    Professor *professor;
+    SalaAula *sala;
+    EnumTipoDisciplina tipo;
+    Ementa ementa;
 
-	private:
-		std::string nome;
-		unsigned short int cargaHoraria;
-		Pessoa* professor;
-		SalaAula* salaAula; 
-		SalaAula* salaAnterior; //atributo membro referencia sala anterior
-		std::list<ConteudoMinistrado*> listaConteudo;
-
+    std::list<ConteudoMinistrado *> conteudos;
+    std::list<Pessoa *> alunos;
 };
+}  // namespace ufpr
 #endif

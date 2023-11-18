@@ -2,20 +2,21 @@
 
 #include<iostream>
 
-void Console::imprimirDadosDisciplina(Disciplina& disciplina){
-	std::cout << "Disicplina: "<< disciplina.getNome() << std::endl;
+using namespace ufpr;
+
+void Console::imprimirDadosDisciplina(const Disciplina& disciplina){
+	std::cout << "Disicplina: "<< disciplina.getNome() << '\n';
 	if(disciplina.getProfessor() != nullptr)
-		std::cout << "Professor: " << disciplina.getProfessor()->getNome() << std::endl;
+		std::cout << "Professor: " << disciplina.getProfessor()->getNome() << '\n';
 	else
-		std::cout << "Sem professor" << std::endl;
+		std::cout << "Sem professor" << '\n';
 
-	std::cout << "Conteudos Ministrados" << std::endl;
+	std::cout << "Conteudos Ministrados" << '\n';
 
-        std::list<ConteudoMinistrado*>::iterator it;
+        std::list<ConteudoMinistrado*>::const_iterator it;
         for(it = disciplina.getConteudos().begin(); it!=disciplina.getConteudos().end(); it++){
-                std::cout << "Id: " << (*it)->getId() << std::endl
-                        << "Conteudo: " << (*it)->getDescricao() << std::endl
-                        << "Carga: " << (*it)->getCargaHorariaConteudo() << std::endl << std::endl;
+                std::cout << "Id: " << (*it)->getId() << "\nConteudo: " << (*it)->getDescricao()
+                        << "\nCarga: " << (*it)->getCargaHorariaConteudo() << "\n\n";
+
         }
 }
-
