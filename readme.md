@@ -1,8 +1,4 @@
-## Hi There!
+### Hi There!
 
 ## Description 
-Exercise of frendly class about the communication between classes
-
-## Fundamental
-
-Fundamentals of Computer Science in Object-oriented programming (OOP) 
+Example of implementation with c++ pattern of Problem management system in University
